@@ -9,7 +9,10 @@ set(INCLUDE_DIRS
 set(SOURCES
         ${PROJECT_SOURCE_DIR}/main.c
         ${PROJECT_SOURCE_DIR}/src/glad.c
-        ${PROJECT_SOURCE_DIR}/src/shader.c)
+        ${PROJECT_SOURCE_DIR}/src/shader.c
+        ${PROJECT_SOURCE_DIR}/src/particle_system.c
+        ${PROJECT_SOURCE_DIR}/src/helpers.c
+)
 
 add_executable(YoutubeOpenGL ${SOURCES})
 
