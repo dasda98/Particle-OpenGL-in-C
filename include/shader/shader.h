@@ -1,7 +1,6 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-
 typedef struct {
     unsigned int ID;
 } Shader;
