@@ -32,7 +32,8 @@ void fillParticle(Particle* p) {
 
     float velocityX = randomFloat(-0.02f, 0.02f);
     float velocityY = randomFloat(0.00f, 0.15f);
-    glm_vec3_copy((vec3){velocityX, velocityY, 0.0f}, p->velocity);
+    float velocityZ = randomFloat(0.00f, 0.15f);
+    glm_vec3_copy((vec3){velocityX, velocityY, velocityZ}, p->velocity);
 
     float _tmp_life = randomFloat(0.3f, 1.0f);
     p->life = _tmp_life;
@@ -54,10 +55,11 @@ void updateParticles(ParticleSystem* ps, float deltaTime) {
             p->color[1] = fmaxf(p->color[1], 0.0f);
             p->color[2] = fmaxf(p->color[2], 0.0f);
             p->color[3] = fmaxf(p->color[3], 0.0f);
+
+            p->life -= deltaTime * 0.25f;
         } else {
             fillParticle(p);
         }
-        p->life -= deltaTime * 0.25f;
     }
 
     glBindBuffer(GL_ARRAY_BUFFER, ps->VBO);
