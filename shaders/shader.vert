@@ -4,8 +4,11 @@ layout (location = 1) in vec4 aColor;
 
 out vec4 particleColor;
 
+uniform mat4 view;
+uniform mat4 projection;
+
 void main()
 {
-    gl_Position = vec4(aPos, 1.0);
+    gl_Position = view * projection * vec4(aPos, 1.0);
     particleColor = aColor;
 }
