@@ -22,9 +22,7 @@ void getViewMatrix(Camera* camera, mat4 view) {
 }
 
 void getProjectionMatrix(Camera* camera, mat4 projection, float aspectRatio) {
-    //glm_perspective(glm_rad(camera->zoom), aspectRatio, 0.1f, 100.0f, projection);
-    float zoom = 2.0f;
-    glm_ortho(-1.0f / zoom, 1.0f / zoom, -1.0f / zoom, 1.0f / zoom, -1.0f, 1.0f, projection);
+    glm_perspective(glm_rad(camera->zoom), aspectRatio, 0.1f, 100.0f, projection);
 }
 
 void processKeyboard(Camera* camera, int direction, float deltaTime) {

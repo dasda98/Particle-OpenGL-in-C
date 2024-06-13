@@ -57,6 +57,10 @@ int main(void) {
         return -1;
     }
 
+    // OpenGL global states
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
+
     // Initialize shader
     Shader myShader = createShader("../shaders/shader.vert", "../shaders/shader.frag");
 
@@ -64,8 +68,9 @@ int main(void) {
     vec3 cameraPos = {0.0f, 0.0f, 0.0f};
     initCamera(&camera, cameraPos);
 
-    mat4 view, projection;
+    mat4 view, projection, model;
 
+    glm_mat4_identity(model);
     // Initialize Particle System
     ParticleSystem ps;
     initParticleSystem(&ps);
@@ -89,8 +94,11 @@ int main(void) {
 
         GLuint viewLoc = glGetUniformLocation(myShader.ID, "view");
         GLuint projectionLoc = glGetUniformLocation(myShader.ID, "projection");
+        GLuint modelLoc = glGetUniformLocation(myShader.ID, "model");
+
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, (float*)view);
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, (float*)projection);
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (float*)projection);
 
         // Shaders
         useShader(&myShader);
