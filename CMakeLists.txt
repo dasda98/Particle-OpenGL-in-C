@@ -11,6 +11,7 @@ set(SOURCES
         ${PROJECT_SOURCE_DIR}/src/glad.c
         ${PROJECT_SOURCE_DIR}/src/shader.c
         ${PROJECT_SOURCE_DIR}/src/particle_system.c
+        ${PROJECT_SOURCE_DIR}/src/camera.c
         ${PROJECT_SOURCE_DIR}/src/helpers.c
 )
 
