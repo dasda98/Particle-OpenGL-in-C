@@ -65,12 +65,13 @@ int main(void) {
     Shader myShader = createShader("../shaders/shader.vert", "../shaders/shader.frag");
 
     // Initialize Camera
-    vec3 cameraPos = {0.0f, 0.0f, 0.0f};
+    vec3 cameraPos = {0.0f, 0.0f, 3.0f};
     initCamera(&camera, cameraPos);
 
     mat4 view, projection, model;
 
     glm_mat4_identity(model);
+
     // Initialize Particle System
     ParticleSystem ps;
     initParticleSystem(&ps);
@@ -85,12 +86,12 @@ int main(void) {
         // Input
         processInput(window);
 
-        // Render
+        // Update
         glClear(GL_COLOR_BUFFER_BIT);
         updateParticles(&ps, deltaTime);
 
         getViewMatrix(&camera, view);
-        getProjectionMatrix(&camera, projection, (float)WIDTH/HEIGHT);
+        getProjectionMatrix(&camera, projection, (float)(WIDTH/HEIGHT));
 
         GLuint viewLoc = glGetUniformLocation(myShader.ID, "view");
         GLuint projectionLoc = glGetUniformLocation(myShader.ID, "projection");
@@ -98,9 +99,9 @@ int main(void) {
 
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, (float*)view);
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, (float*)projection);
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (float*)projection);
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (float*)model);
 
-        // Shaders
+        // Render
         useShader(&myShader);
         renderParticles(&ps);
 

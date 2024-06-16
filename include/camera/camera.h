@@ -1,4 +1,4 @@
-#ifndef CAMERA_Hd
+#ifndef CAMERA_H
 #define CAMERA_H
 
 #include <glad/glad.h>
